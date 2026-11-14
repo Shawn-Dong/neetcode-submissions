@@ -1,0 +1,30 @@
+# Definition for a pair.
+# class Pair:
+#     def __init__(self, key: int, value: str):
+#         self.key = key
+#         self.value = value
+class Solution:
+    def quickSort(self, pairs: List[Pair]) -> List[Pair]:
+        self.quickSortHelper(pairs, 0, len(pairs) - 1)
+        return pairs
+
+    def quickSortHelper(self, pairs: List[Pair], start: int, end: int) -> None:
+        if start >= end:
+            return
+        pivot = pairs[end].key
+        i = start
+        j = start
+        while j < end:
+            if pairs[j].key < pivot:
+                pairs[i], pairs[j] = pairs[j], pairs[i]
+                i += 1
+                j += 1
+            else:
+                j += 1
+            
+        pairs[end], pairs[i] = pairs[i], pairs[end]
+        self.quickSortHelper(pairs, start, i - 1)
+        self.quickSortHelper(pairs, i +1, end)
+
+
+        
